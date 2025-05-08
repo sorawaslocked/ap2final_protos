@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package movie.service.v1.movie;
+
+import "base/v1/movie.proto";
+
+option go_package = "github.com/sorawaslocked/ap2final_proto/service/v1;movie";
+
+// Movie is a service for handling movie CRUD requests
+service MovieService {
+  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc GetAll(GetAllRequest) returns (GetAllResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+}
+
+message CreateRequest {
+  string AgeRating = 1;
+  string PrimaryTitle = 2;
+  string OriginalTitle = 3;
+  uint32 ReleaseYear = 4;
+  uint32 RuntimeInMinutes = 5;
+  repeated string Genres = 6;
+}
+
+message CreateResponse {
+  optional Movie Movie = 1;
+  optional string Error = 2;
+}
+
+message GetRequest {
+  string ID = 1;
+}
+
+message GetResponse {
+  optional Movie Movie = 1;
+  optional string Error = 2;
+}
+
+message GetAllRequest {
+}
+
+message GetAllResponse {
+  repeated Movie movies = 1;
+  optional string Error = 2;
+}
+
+message UpdateRequest {
+  string ID = 1;
+  optional string AgeRating = 2;
+  optional string PrimaryTitle = 3;
+  optional string OriginalTitle = 4;
+  optional uint32 ReleaseYear = 5;
+  optional uint32 RuntimeInMinutes = 6;
+  repeated string Genres = 7;
+  optional bool IsDeleted = 8;
+}
+
+message UpdateResponse {
+  optional Movie Movie = 1;
+  optional string Error = 2;
+}
+
+message DeleteRequest {
+  string ID = 1;
+}
+
+message DeleteResponse {
+  optional Movie Movie = 1;
+  optional string Error = 2;
+}
