@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package movie.service.movie.v1;
+package movie.service.frontend.movie.v1;
 
-import "base/v1/movie.proto";
+import "base/frontend/v1/movie.proto";
 
-option go_package = "github.com/sorawaslocked/ap2final_protos/service/movie/v1;movie";
+option go_package = "github.com/sorawaslocked/ap2final_protos/service/frontend/movie/v1;movie";
 
 // Movie is a service for handling movie CRUD requests
 service MovieService {
