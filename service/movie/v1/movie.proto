@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package movie.service.frontend.movie.v1;
+package movie.service.movie.v1;
 
-import "base/frontend/v1/movie.proto";
+import "base/v1/movie.proto";
 
-option go_package = "github.com/sorawaslocked/ap2final_protos/service/frontend/movie/v1;movie";
+option go_package = "github.com/sorawaslocked/ap2final_protos/service/movie/v1;movie";
 
 // Movie is a service for handling movie CRUD requests
 service MovieService {
@@ -25,7 +25,7 @@ message CreateRequest {
 }
 
 message CreateResponse {
-  optional base.frontend.v1.Movie Movie = 1;
+  optional base.v1.Movie Movie = 1;
   optional string Error = 2;
 }
 
@@ -34,7 +34,7 @@ message GetRequest {
 }
 
 message GetResponse {
-  optional base.frontend.v1.Movie Movie = 1;
+  optional base.v1.Movie Movie = 1;
   optional string Error = 2;
 }
 
@@ -42,7 +42,7 @@ message GetAllRequest {
 }
 
 message GetAllResponse {
-  repeated base.frontend.v1.Movie movies = 1;
+  repeated base.v1.Movie movies = 1;
   optional string Error = 2;
 }
 
@@ -58,7 +58,7 @@ message UpdateRequest {
 }
 
 message UpdateResponse {
-  optional base.frontend.v1.Movie Movie = 1;
+  optional base.v1.Movie Movie = 1;
   optional string Error = 2;
 }
 
@@ -67,6 +67,6 @@ message DeleteRequest {
 }
 
 message DeleteResponse {
-  optional base.frontend.v1.Movie Movie = 1;
+  optional base.v1.Movie Movie = 1;
   optional string Error = 2;
 }
