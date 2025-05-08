@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package movie.base.frontend.v1;
+package movie.base;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/sorawaslocked/ap2final_protos/base/frontend/v1;base";
+option go_package = "github.com/sorawaslocked/ap2final_protos/base;base";
 
 message Movie {
   string ID = 1;
