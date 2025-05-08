@@ -25,7 +25,7 @@ message CreateRequest {
 }
 
 message CreateResponse {
-  optional Movie Movie = 1;
+  optional base.frontend.v1.Movie Movie = 1;
   optional string Error = 2;
 }
 
@@ -34,7 +34,7 @@ message GetRequest {
 }
 
 message GetResponse {
-  optional Movie Movie = 1;
+  optional base.frontend.v1.Movie Movie = 1;
   optional string Error = 2;
 }
 
@@ -42,7 +42,7 @@ message GetAllRequest {
 }
 
 message GetAllResponse {
-  repeated Movie movies = 1;
+  repeated base.frontend.v1.Movie movies = 1;
   optional string Error = 2;
 }
 
@@ -58,7 +58,7 @@ message UpdateRequest {
 }
 
 message UpdateResponse {
-  optional Movie Movie = 1;
+  optional base.frontend.v1.Movie Movie = 1;
   optional string Error = 2;
 }
 
@@ -67,6 +67,6 @@ message DeleteRequest {
 }
 
 message DeleteResponse {
-  optional Movie Movie = 1;
+  optional base.frontend.v1.Movie Movie = 1;
   optional string Error = 2;
 }
