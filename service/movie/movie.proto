@@ -26,7 +26,6 @@ message CreateRequest {
 
 message CreateResponse {
   optional base.Movie Movie = 1;
-  optional string Error = 2;
 }
 
 message GetRequest {
@@ -35,7 +34,6 @@ message GetRequest {
 
 message GetResponse {
   optional base.Movie Movie = 1;
-  optional string Error = 2;
 }
 
 message GetAllRequest {
@@ -43,7 +41,6 @@ message GetAllRequest {
 
 message GetAllResponse {
   repeated base.Movie movies = 1;
-  optional string Error = 2;
 }
 
 message UpdateRequest {
@@ -59,7 +56,6 @@ message UpdateRequest {
 
 message UpdateResponse {
   optional base.Movie Movie = 1;
-  optional string Error = 2;
 }
 
 message DeleteRequest {
@@ -68,5 +64,4 @@ message DeleteRequest {
 
 message DeleteResponse {
   optional base.Movie Movie = 1;
-  optional string Error = 2;
 }
