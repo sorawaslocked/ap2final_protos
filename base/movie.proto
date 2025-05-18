@@ -4,7 +4,7 @@ package movie.base;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/sorawaslocked/ap2final_protos/base;base";
+option go_package = "github.com/sorawaslocked/ap2final_protos_gen/base;base";
 
 message Movie {
   string ID = 1;

@@ -4,7 +4,7 @@ package movie.service.movie;
 
 import "base/movie.proto";
 
-option go_package = "github.com/sorawaslocked/ap2final_protos/service/movie;movie";
+option go_package = "github.com/sorawaslocked/ap2final_protos_gen/service/movie;movie";
 
 // Movie is a service for handling movie CRUD requests
 service MovieService {
