@@ -16,6 +16,9 @@ service ActorService {
   rpc Update(UpdateRequest) returns (UpdateResponse);
   rpc Delete(DeleteRequest) returns (DeleteResponse);
 
+  // Get actors/crew for a specific movie
+  rpc GetByMovieID(GetByMovieIDRequest) returns (GetByMovieIDResponse);
+
   // Filmography management
   rpc AddMovieToFilmography(AddMovieToFilmographyRequest) returns (AddMovieToFilmographyResponse);
   rpc RemoveMovieFromFilmography(RemoveMovieFromFilmographyRequest) returns (RemoveMovieFromFilmographyResponse);
@@ -79,6 +82,16 @@ message GetAllWithFilterRequest {
 }
 
 message GetAllWithFilterResponse {
+  repeated base.Actor Actors = 1;
+}
+
+// GetByMovieID requests and responses
+message GetByMovieIDRequest {
+  string MovieID = 1;
+  optional string Role = 2;  // Optional: filter by specific role (Actor, Director, etc.)
+}
+
+message GetByMovieIDResponse {
   repeated base.Actor Actors = 1;
 }
 
