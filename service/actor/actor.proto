@@ -22,13 +22,6 @@ service ActorService {
   rpc UpdateFilmographyEntry(UpdateFilmographyEntryRequest) returns (UpdateFilmographyEntryResponse);
 }
 
-// FilmographyEntry represents an actor's participation in a specific movie
-message FilmographyEntry {
-  string MovieID = 1;
-  string Character = 2;  // The character they played (empty for crew)
-  string Role = 3;       // "Actor" or crew role (Director, Producer, etc.)
-}
-
 // AgeRange for filtering actors by age
 message AgeRange {
   uint32 AgeFrom = 1;
@@ -56,7 +49,7 @@ message CreateRequest {
   string Nationality = 5;
   string Biography = 6;
   string ImageURL = 7;
-  repeated FilmographyEntry Filmography = 8;
+  repeated base.FilmographyEntry Filmography = 8;
 }
 
 message CreateResponse {
@@ -99,7 +92,7 @@ message UpdateRequest {
   optional string Nationality = 6;
   optional string Biography = 7;
   optional string ImageURL = 8;
-  repeated FilmographyEntry Filmography = 9;
+  repeated base.FilmographyEntry Filmography = 9;
   optional bool IsDeleted = 10;
 }
 
@@ -119,7 +112,7 @@ message DeleteResponse {
 // Filmography management requests and responses
 message AddMovieToFilmographyRequest {
   string ActorID = 1;
-  FilmographyEntry Entry = 2;
+  base.FilmographyEntry Entry = 2;
 }
 
 message AddMovieToFilmographyResponse {
@@ -138,7 +131,7 @@ message RemoveMovieFromFilmographyResponse {
 message UpdateFilmographyEntryRequest {
   string ActorID = 1;
   string MovieID = 2;
-  FilmographyEntry Entry = 3;
+  base.FilmographyEntry Entry = 3;
 }
 
 message UpdateFilmographyEntryResponse {
