@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package actor.base;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/sorawaslocked/ap2final_protos_gen/base;base";
+
+message Actor {
+  string ID = 1;
+  string FirstName = 2;
+  string LastName = 3;
+  google.protobuf.Timestamp BirthDate = 4;
+  optional google.protobuf.Timestamp DeathDate = 5;  // Pointer since it could be nil for living actors
+  string Nationality = 6;
+  string Biography = 7;
+  string ImageURL = 8;                               // URL to actor's image
+  repeated FilmographyEntry Filmography = 9;         // Movies they participated in with their roles
+  google.protobuf.Timestamp CreatedAt = 10;
+  google.protobuf.Timestamp UpdatedAt = 11;
+  bool IsDeleted = 12;
+}
+
+message FilmographyEntry {
+  string MovieID = 1;
+  string Character = 2;  // The character they played (empty for crew)
+  string Role = 3;       // "Actor" or crew role (Director, Producer, etc.)
+}

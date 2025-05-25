@@ -1,0 +1,146 @@
+syntax = "proto3";
+
+package actor.service.actor;
+
+import "base/actor.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/sorawaslocked/ap2final_protos_gen/service/actor;actor";
+
+// ActorService is a service for handling actor CRUD requests
+service ActorService {
+  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc GetAll(GetAllRequest) returns (GetAllResponse);
+  rpc GetAllWithFilter(GetAllWithFilterRequest) returns (GetAllWithFilterResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+
+  // Filmography management
+  rpc AddMovieToFilmography(AddMovieToFilmographyRequest) returns (AddMovieToFilmographyResponse);
+  rpc RemoveMovieFromFilmography(RemoveMovieFromFilmographyRequest) returns (RemoveMovieFromFilmographyResponse);
+  rpc UpdateFilmographyEntry(UpdateFilmographyEntryRequest) returns (UpdateFilmographyEntryResponse);
+}
+
+// FilmographyEntry represents an actor's participation in a specific movie
+message FilmographyEntry {
+  string MovieID = 1;
+  string Character = 2;  // The character they played (empty for crew)
+  string Role = 3;       // "Actor" or crew role (Director, Producer, etc.)
+}
+
+// AgeRange for filtering actors by age
+message AgeRange {
+  uint32 AgeFrom = 1;
+  uint32 AgeTo = 2;
+}
+
+// ActorFilter for searching actors based on criteria
+message ActorFilter {
+  optional string ID = 1;
+  optional string FirstName = 2;
+  optional string LastName = 3;
+  optional AgeRange AgeRange = 4;
+  optional string Nationality = 5;
+  optional string MovieID = 6;  // Filter actors by a specific movie they were in
+  optional string Role = 7;     // Filter by role type
+  optional bool IsDeleted = 8;
+}
+
+// Create requests and responses
+message CreateRequest {
+  string FirstName = 1;
+  string LastName = 2;
+  google.protobuf.Timestamp BirthDate = 3;
+  optional google.protobuf.Timestamp DeathDate = 4;
+  string Nationality = 5;
+  string Biography = 6;
+  string ImageURL = 7;
+  repeated FilmographyEntry Filmography = 8;
+}
+
+message CreateResponse {
+  optional base.Actor Actor = 1;
+}
+
+// Get requests and responses
+message GetRequest {
+  string ID = 1;
+}
+
+message GetResponse {
+  optional base.Actor Actor = 1;
+}
+
+// GetAll requests and responses
+message GetAllRequest {
+}
+
+message GetAllResponse {
+  repeated base.Actor Actors = 1;
+}
+
+// GetAllWithFilter requests and responses
+message GetAllWithFilterRequest {
+  ActorFilter Filter = 1;
+}
+
+message GetAllWithFilterResponse {
+  repeated base.Actor Actors = 1;
+}
+
+// Update requests and responses
+message UpdateRequest {
+  string ID = 1;
+  optional string FirstName = 2;
+  optional string LastName = 3;
+  optional google.protobuf.Timestamp BirthDate = 4;
+  optional google.protobuf.Timestamp DeathDate = 5;
+  optional string Nationality = 6;
+  optional string Biography = 7;
+  optional string ImageURL = 8;
+  repeated FilmographyEntry Filmography = 9;
+  optional bool IsDeleted = 10;
+}
+
+message UpdateResponse {
+  optional base.Actor Actor = 1;
+}
+
+// Delete requests and responses
+message DeleteRequest {
+  string ID = 1;
+}
+
+message DeleteResponse {
+  optional base.Actor Actor = 1;
+}
+
+// Filmography management requests and responses
+message AddMovieToFilmographyRequest {
+  string ActorID = 1;
+  FilmographyEntry Entry = 2;
+}
+
+message AddMovieToFilmographyResponse {
+  optional base.Actor Actor = 1;
+}
+
+message RemoveMovieFromFilmographyRequest {
+  string ActorID = 1;
+  string MovieID = 2;
+}
+
+message RemoveMovieFromFilmographyResponse {
+  optional base.Actor Actor = 1;
+}
+
+message UpdateFilmographyEntryRequest {
+  string ActorID = 1;
+  string MovieID = 2;
+  FilmographyEntry Entry = 3;
+}
+
+message UpdateFilmographyEntryResponse {
+  optional base.Actor Actor = 1;
+}
