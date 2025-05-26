@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package user.service.user;
+
+import "base/user.proto";
+
+option go_package = "github.com/sorawaslocked/ap2final_protos_gen/service/user;user";
+
+service UserService {
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+}
+
+message RegisterRequest {
+  string Email = 1;
+  string Password = 2;
+}
+
+message RegisterResponse {
+  base.User User = 1;
+}
+
+message LoginRequest {
+  string Email = 1;
+  string Password = 2;
+}
+
+message LoginResponse {
+  base.Token Token = 1;
+}
+
+message RefreshTokenRequest {
+  string RefreshToken = 1;
+}
+
+message RefreshTokenResponse {
+  base.Token Token = 1;
+}
+
+message GetRequest {
+  string ID = 1;
+}
+
+message GetResponse {
+  base.User User = 1;
+}
+
+message UpdateRequest {
+  string ID = 1;
+  optional string FirstName = 2;
+  optional string LastName = 3;
+  optional string Email = 4;
+  optional string PhoneNumber = 5;
+  optional string CurrentPassword = 6;
+  optional string NewPassword = 7;
+  optional string Role = 8;
+  optional bool IsDeleted = 9;
+  optional bool IsActive = 10;
+}
+
+message UpdateResponse {
+  base.User User = 1;
+}
+
+message DeleteRequest {
+  string ID = 1;
+}
+
+message DeleteResponse {
+  base.User User = 1;
+}
