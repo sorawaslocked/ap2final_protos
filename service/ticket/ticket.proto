@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package ticket.service.ticket;
+
+import "base/ticket.proto";
+
+option go_package = "github.com/sorawaslocked/ap2final_protos_gen/service/ticket;ticket";
+
+service TicketService {
+  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc GetAll(GetAllRequest) returns (GetAllResponse);
+  rpc GetByUser(GetByUserRequest) returns (GetByUserResponse);
+  rpc GetByMovie(GetByMovieRequest) returns (GetByMovieResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+}
+
+message CreateRequest {
+  string UserID = 1;
+  string MovieID = 2;
+  string ShowtimeID = 3;
+  string SeatNumber = 4;
+  double Price = 5;
+  string Status = 6;
+}
+
+message CreateResponse {
+  optional base.Ticket Ticket = 1;
+}
+
+message GetRequest {
+  string ID = 1;
+}
+
+message GetResponse {
+  optional base.Ticket Ticket = 1;
+}
+
+message GetAllRequest {
+}
+
+message GetAllResponse {
+  repeated base.Ticket tickets = 1;
+}
+
+message GetByUserRequest {
+  string UserID = 1;
+}
+
+message GetByUserResponse {
+  repeated base.Ticket tickets = 1;
+}
+
+message GetByMovieRequest {
+  string MovieID = 1;
+}
+
+message GetByMovieResponse {
+  repeated base.Ticket tickets = 1;
+}
+
+message UpdateRequest {
+  string ID = 1;
+  optional string UserID = 2;
+  optional string MovieID = 3;
+  optional string ShowtimeID = 4;
+  optional string SeatNumber = 5;
+  optional double Price = 6;
+  optional string Status = 7;
+  optional bool IsDeleted = 8;
+}
+
+message UpdateResponse {
+  optional base.Ticket Ticket = 1;
+}
+
+message DeleteRequest {
+  string ID = 1;
+}
+
+message DeleteResponse {
+  optional base.Ticket Ticket = 1;
+}

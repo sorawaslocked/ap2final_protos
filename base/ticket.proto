@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package ticket.base;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/sorawaslocked/ap2final_protos_gen/base;base";
+
+message Ticket {
+  string ID = 1;
+  string UserID = 2;
+  string MovieID = 3;
+  string ShowtimeID = 4;
+  string SeatNumber = 5;
+  double Price = 6;
+  string Status = 7;
+  google.protobuf.Timestamp CreatedAt = 8;
+  google.protobuf.Timestamp UpdatedAt = 9;
+  bool IsDeleted = 10;
+}
