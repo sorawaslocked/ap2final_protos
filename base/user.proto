@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package user.base;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/sorawaslocked/ap2final_protos_gen/base;base";
+
+message User {
+  string ID = 1;
+  string FirstName = 2;
+  string LastName = 3;
+  string Email = 4;
+  string PhoneNumber = 5;
+  string PasswordHash = 6;
+  string Role = 7;
+  google.protobuf.Timestamp CreatedAt = 8;
+  google.protobuf.Timestamp UpdatedAt = 9;
+  bool IsDeleted = 10;
+  bool IsActive = 11;
+}
+
+message Token {
+  string AccessToken = 1;
+  string RefreshToken = 2;
+}
