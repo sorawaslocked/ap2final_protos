@@ -1,0 +1,143 @@
+syntax = "proto3";
+
+package session.service.session;
+
+import "base/session.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/sorawaslocked/ap2final_protos_gen/service/session;session";
+
+service SessionService {
+  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc GetAll(GetAllRequest) returns (GetAllResponse);
+  rpc GetAllWithFilter(GetAllWithFilterRequest) returns (GetAllWithFilterResponse);
+  rpc GetByMovieID(GetByMovieIDRequest) returns (GetByMovieIDResponse);
+  rpc GetByCinemaHallID(GetByCinemaHallIDRequest) returns (GetByCinemaHallIDResponse);
+  rpc GetByTimeRange(GetByTimeRangeRequest) returns (GetByTimeRangeResponse);
+  rpc GetAvailableSessions(GetAvailableSessionsRequest) returns (GetAvailableSessionsResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+  rpc UpdateSeatAvailability(UpdateSeatAvailabilityRequest) returns (UpdateSeatAvailabilityResponse);
+  rpc ChangeStatus(ChangeStatusRequest) returns (ChangeStatusResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+}
+
+message SessionFilter {
+  optional string ID = 1;
+  optional string MovieID = 2;
+  optional string CinemaHallID = 3;
+  optional google.protobuf.Timestamp StartTimeGTE = 4;
+  optional google.protobuf.Timestamp StartTimeLTE = 5;
+  optional string Status = 6;
+  optional bool IsDeleted = 7;
+  optional bool HasAvailable = 8;
+}
+
+message CreateRequest {
+  string MovieID = 1;
+  string CinemaHallID = 2;
+  google.protobuf.Timestamp StartTime = 3;
+  google.protobuf.Timestamp EndTime = 4;
+  double Price = 5;
+  int32 TotalSeats = 6;
+}
+
+message CreateResponse {
+  optional base.Session Session = 1;
+}
+
+message GetRequest {
+  string ID = 1;
+}
+
+message GetResponse {
+  optional base.Session Session = 1;
+}
+
+message GetAllRequest {}
+
+message GetAllResponse {
+  repeated base.Session Sessions = 1;
+}
+
+message GetAllWithFilterRequest {
+  SessionFilter Filter = 1;
+}
+
+message GetAllWithFilterResponse {
+  repeated base.Session Sessions = 1;
+}
+
+message GetByMovieIDRequest {
+  string MovieID = 1;
+}
+
+message GetByMovieIDResponse {
+  repeated base.Session Sessions = 1;
+}
+
+message GetByCinemaHallIDRequest {
+  string CinemaHallID = 1;
+}
+
+message GetByCinemaHallIDResponse {
+  repeated base.Session Sessions = 1;
+}
+
+message GetByTimeRangeRequest {
+  google.protobuf.Timestamp StartTime = 1;
+  google.protobuf.Timestamp EndTime = 2;
+}
+
+message GetByTimeRangeResponse {
+  repeated base.Session Sessions = 1;
+}
+
+message GetAvailableSessionsRequest {}
+
+message GetAvailableSessionsResponse {
+  repeated base.Session Sessions = 1;
+}
+
+message UpdateRequest {
+  string ID = 1;
+  optional string MovieID = 2;
+  optional string CinemaHallID = 3;
+  optional google.protobuf.Timestamp StartTime = 4;
+  optional google.protobuf.Timestamp EndTime = 5;
+  optional double Price = 6;
+  optional int32 AvailableSeats = 7;
+  optional int32 TotalSeats = 8;
+  optional string Status = 9;
+  optional bool IsDeleted = 10;
+}
+
+message UpdateResponse {
+  optional base.Session Session = 1;
+}
+
+message UpdateSeatAvailabilityRequest {
+  string ID = 1;
+  int32 BookedSeatsCount = 2;
+}
+
+message UpdateSeatAvailabilityResponse {
+  optional base.Session Session = 1;
+}
+
+message ChangeStatusRequest {
+  string ID = 1;
+  string Status = 2;
+}
+
+message ChangeStatusResponse {
+  optional base.Session Session = 1;
+}
+
+message DeleteRequest {
+  string ID = 1;
+}
+
+message DeleteResponse {
+  optional base.Session Session = 1;
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package session.base;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/sorawaslocked/ap2final_protos_gen/base;base";
+
+message Session {
+  string ID = 1;
+  string MovieID = 2;
+  string CinemaHallID = 3;
+  google.protobuf.Timestamp StartTime = 4;
+  google.protobuf.Timestamp EndTime = 5;
+  double Price = 6;
+  int32 AvailableSeats = 7;
+  int32 TotalSeats = 8;
+  string Status = 9;
+  google.protobuf.Timestamp CreatedAt = 10;
+  google.protobuf.Timestamp UpdatedAt = 11;
+  bool IsDeleted = 12;
+}
